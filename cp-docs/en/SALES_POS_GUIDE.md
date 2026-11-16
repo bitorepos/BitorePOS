@@ -1,0 +1,415 @@
+# Sales & POS (Point of Sale)
+
+Sales are how your business earns money. {application_name} gives you two ways to sell: the fast **POS Screen** for counter sales, and the detailed **Direct Sale** form for more complex transactions. This guide covers both.
+
+---
+
+## What You'll Learn
+
+- How to make a sale using the POS screen
+- How to make a direct sale
+- How to manage quotations and sales orders
+- How to process returns and refunds
+- How to handle discounts and promotions
+- How to manage the cash register
+
+---
+
+## Part 1: POS (Point of Sale) — Quick Counter Sales
+
+The POS screen is designed for fast, face-to-face sales — like at a shop counter or restaurant.
+
+### How to Make a POS Sale
+
+1. Go to **POS Sale → POS Sale** from the left sidebar.
+2. The POS screen opens with:
+   - A **Search Bar** at the top to find products
+   - **Product Suggestions** on the right (if enabled)
+   - A **Cart** on the left showing added items
+
+3. **Add products** to the cart:
+   - Type the product name in the search bar and click the result, OR
+   - Scan a barcode with your scanner, OR
+   - Click a product from the suggestion grid
+
+4. **Adjust quantities**: Click the quantity number to change it, or use the + / − buttons.
+
+5. **Apply discounts** (optional): Click the discount icon next to an item to add a per-item discount.
+
+6. Click the **Pay** button (or press the keyboard shortcut).
+
+7. The **Payment Screen** appears:
+   - Enter the **Amount Received** from the customer
+   - Choose the **Payment Method**: Cash, Card, Cheque, Bank Transfer, Custom
+   - The system shows the **Change Due** automatically
+   - Add a **Payment Note** if needed
+
+   When **Disable Change Return on Overpay** is turned off in Business Settings, any amount received above the sale total is recorded as change returned, not as customer credit. If you need to correct products, quantities, discounts, payment amount, or payment method, edit the sale through POS or Sell so the sale total and change return are recalculated together. Editing a payment alone cannot create a new overpayment.
+
+8. Click **Finalise** to complete the sale.
+
+9. The **Receipt** appears:
+   - Click **Print** to print the receipt
+   - Click **Email** to send it to the customer
+   - Click **New Sale** to start the next transaction
+
+📸 *[Screenshot: The POS screen with products in cart and the Pay button highlighted]*
+
+📸 *[Screenshot: The payment popup showing amount received, change due, and payment method]*
+
+---
+
+### POS Keyboard Shortcuts
+
+Speed up your work with these shortcuts:
+
+| Shortcut | Action |
+|---|---|
+| `F2` | Open the payment screen |
+| `F4` | Cancel the current sale |
+| `F5` | Hold / Suspend the sale |
+| `F7` | Add a new customer |
+| `F9` | Quick add product |
+| `Ctrl + P` | Print last receipt |
+
+> 💡 **Tip:** These shortcuts can be customised in **Settings → Business Settings → POS Sale → Keyboard Shortcuts**.
+
+---
+
+### How to Suspend and Resume a Sale
+
+If a customer needs to step away:
+
+1. During a sale, click **Suspend** (or press `F5`).
+2. The sale is saved as a draft.
+3. To resume, go to **POS Sale → List Drafts**.
+4. Click **Resume** on the suspended sale.
+5. Continue where you left off.
+
+📸 *[Screenshot: The Drafts list with the Resume button]*
+
+---
+
+### How to Open and Close the Cash Register
+
+**Opening the Register:**
+1. When you start the POS, you'll be asked to **Open Register** if one isn't already open.
+2. Enter the **Opening Cash Amount** — the money already in the drawer.
+3. Click **Open Register**.
+
+**Closing the Register:**
+1. Click the **Close Register** button on the POS screen.
+2. Count your cash and enter the **Closing Amount**.
+3. The system compares your count with what it expects.
+4. Review any differences.
+5. Click **Close Register** to finish your shift.
+
+📸 *[Screenshot: The Close Register screen showing expected vs. actual cash amounts]*
+
+---
+
+## Part 2: Direct Sales — Detailed Sales
+
+The direct sale form gives you more control for invoices, shipments, and detailed transactions.
+
+### How to Create a Direct Sale
+
+1. Go to **Sale → Add Sale** from the left sidebar.
+2. Fill in:
+   - **Customer** — Choose or search for a customer
+   - **Business Location** — Which shop/warehouse
+   - **Sale Date** — When the sale was made
+   - **Invoice Number** — Auto-generated
+   - **Customer Group** — Optionally narrow customer search results by group. **All** is selected by default; this filter is shown only when at least one customer group exists.
+3. Add products by searching or scanning.
+4. For each product, set:
+   - **Quantity**
+   - **Unit Price** — Can override the default
+   - **Discount** — Per-item discount
+   - **Tax** — Per-item tax
+5. Add any **overall discount** or **shipping charges**.
+6. In the **Payment** section, enter payment details.
+7. Click **Save** to record the sale.
+
+The same **Customer Group** filter is available when editing a sale. It only filters customer search results; it does not change the selected customer's group.
+
+### Update selected invoices
+
+#### Module Overview
+Invoice Maintenance updates the transaction date or commission agent on multiple selected sales invoices from the Sell list.
+
+#### Purpose of the Feature
+It lets authorized users correct invoice dates or reassign commission agents in one operation rather than opening and editing invoices one at a time.
+
+#### User Access / Permissions
+Users need **Sell Update** or **Direct Sell Update** permission. The operation also respects the user's permitted Business Locations and the normal invoice edit restrictions.
+
+#### Step-by-Step Usage Instructions
+1. Go to **Sell → Sells** and select the invoices to update.
+2. Select **Invoice Maintenance** at the bottom of the list.
+3. Choose **Update Transaction Date**, **Update Commission Agent**, or **Update Commission Agent 2**.
+4. Enter the new transaction date or choose the commission agent to assign. Choose **None** to clear an agent assignment.
+5. Select **Apply** and confirm the number of selected invoices.
+
+#### Field Descriptions
+| Field | Type | Description |
+|---|---|---|
+| Maintenance type | Dropdown | Select which invoice information to update. |
+| Date | Date picker | The new transaction date to apply to every eligible selected invoice. |
+| Commission Agent | Dropdown | Agent to assign to each eligible invoice, or **None** to clear the assignment. Available when commission agent tracking is configured. |
+| Commission Agent 2 | Dropdown | Second agent to assign to each eligible invoice, or **None** to clear the assignment. Available when second commission agent tracking is configured. |
+
+#### Business Logic / Workflow
+The operation checks the entire selection for access and permission before making changes. Eligible final sale invoices are updated while preserving each invoice's existing time of day when the transaction date is changed. Commission agent choices are limited to the business's configured agent type. Invoices blocked by integration or tax-authority restrictions, paid-invoice permissions, edit-period limits, or an existing return are skipped and reported; other eligible invoices in the selection are still updated. Each changed invoice appears in the **Activity Log** report with the maintenance action and selected value.
+
+#### Notes or Important Considerations
+Invoices issued through integrations or with tax-authority invoice numbers, paid invoices restricted by the user's permissions, invoices with returns, and invoices outside the allowed edit period are skipped. The result reports which invoices were skipped. Sales orders, drafts, and quotations are not eligible. Updating an invoice's transaction date does not change payment dates.
+
+### Save Direct Sale header defaults
+
+#### Module Overview
+The Direct Sale header contains customer, payment-term, sale-status, and other information used when creating a sale.
+
+#### Purpose of the Feature
+Saved defaults reduce repeat entry by restoring commonly used header choices on the next Direct Sale.
+
+#### User Access / Permissions
+Users who can create Direct Sales or Sales Orders can save and reset their own defaults.
+
+#### Step-by-Step Usage Instructions
+1. Open **Sale → Add Sale** and choose the header values you want to reuse.
+2. Select **Set Default**. The choices are saved for your user account and used on later Direct Sale forms.
+3. Select **Reset** to clear your saved choices and return to the normal business and customer defaults.
+
+#### Field Descriptions
+| Field | Type | Description |
+|---|---|---|
+| Customer Group | Dropdown | Restores the customer search filter selection. |
+| Selling Price Group | Dropdown | Restores the selected selling price group, when available. |
+| Type of Service | Dropdown | Restores the selected service, when enabled. |
+| Pay Term | Number and dropdown | Restores the payment-term number and whether it is measured in days or months. |
+| Is Tax Inclusive? | Checkbox | Restores whether sale prices include tax. |
+| Status | Dropdown | Restores the selected sale status on forms where the status can be chosen. |
+| Sub-Status | Dropdown | Restores the selected sub-status when the feature is enabled. |
+| Agent 1 and Agent 2 | Dropdowns | Restore the selected sales agents when available. |
+
+#### Business Logic / Workflow
+Defaults are saved per user and applied when a new Direct Sale form is loaded. The Customer field is intentionally excluded so each sale can use the customer selected for that transaction. An agent choice that is no longer available is ignored by the form. The active register and Business Location continue to control the sale location.
+
+#### Notes or Important Considerations
+Sale Date, Invoice No., Ref. No., and attached files are transaction-specific and are not saved as defaults. Resetting clears saved preferences but does not change the values on the form that is already open.
+
+### Quick-add a customer with the selected group
+
+#### Module Overview
+The customer quick-add form lets you create a customer without leaving the sale.
+
+#### Purpose of the Feature
+It saves time and keeps a newly added customer in the group currently selected on the sale.
+
+#### User Access / Permissions
+You need permission to create customers to use the **Add new customer** option.
+
+#### Step-by-Step Usage Instructions
+1. Select a **Customer Group** on the sale.
+2. Search for the customer. If no match appears, choose **Add as new customer**.
+3. Complete the contact details and confirm the same **Customer Group** is selected.
+4. Save the contact to return to the sale.
+
+#### Field Descriptions
+| Field | Type | Description |
+|---|---|---|
+| Customer search | Search | Finds existing customers or starts quick-add when no match is found. |
+| Customer Group filter | Dropdown | Filters customer search and supplies the initial group for quick-add. |
+| Customer Group | Dropdown | The group assigned to the new customer; initially matches the sale filter. |
+
+#### Business Logic / Workflow
+The selected sale group is copied into the new contact form when quick-add opens. Saving the contact assigns that group to the customer.
+
+#### Notes or Important Considerations
+Changing the group in the contact form affects the new customer only. The sale filter continues to control customer search results.
+
+📸 *[Screenshot: The direct sale form with customer, products, and payment sections]*
+
+---
+
+## Quotations
+
+A quotation is a price estimate you give to a customer before they decide to buy.
+
+### How to Create a Quotation
+
+1. Go to **Sale → Add Quotation**.
+2. Fill out the form just like a sale, but the status will be "Quotation".
+3. Click **Save**.
+
+### How to Convert a Quotation to a Sale
+
+1. Go to **Sale → List Quotations**.
+2. Find the quotation and click **Actions → Convert to Sale**.
+3. Review and adjust if needed.
+4. Click **Save** to finalise the sale.
+
+📸 *[Screenshot: The quotation list with Actions → Convert to Sale option]*
+
+---
+
+## Sales Orders
+
+Sales orders track confirmed orders that haven't been delivered yet.
+
+1. Go to **Sale → Sales Orders** to view all orders.
+2. Click **Add Sale** and set the sale type to **Sales Order**.
+3. Once you deliver the products, mark the order as **Completed**.
+
+📸 *[Screenshot: The Sales Orders list with status indicators]*
+
+---
+
+## Sell Returns & Refunds
+
+When a customer returns a product:
+
+1. Go to **Sale → List Sell Returns** (or find the sale and click **Actions → Return**).
+2. Click **Add** to create a new return.
+3. Select the original sale.
+4. Enter the quantity being returned for each product.
+5. Choose how to refund:
+   - **Cash** refund
+   - **Credit** to the customer's account
+6. Make sure the total refund does not exceed the calculated value of the returned items. The system blocks a larger refund.
+7. Click **Save**.
+
+Stock will be restored and the customer's balance will be updated.
+
+📸 *[Screenshot: The sell return form showing items being returned]*
+
+---
+
+## Discounts & Promotions
+
+### Per-Item Discount
+- While creating a sale, click the **Discount** field next to any product and enter a percentage or fixed amount.
+
+### Apply a Discount to All Products in Sell
+1. On the Add Sale or Edit Sale page, click the **Discount** column heading above the product list.
+2. Choose **%** to enter a percentage, or choose the currency symbol to enter one total discount amount for the products.
+3. Enter the discount and click **Apply**. A fixed total is converted to one percentage using the combined value of eligible products and their quantities.
+4. Review the product rows and sale total before saving.
+
+### Overall Discount
+- At the bottom of the sale form, find the **Order Discount** field and enter the overall discount.
+
+### Managed Discounts
+1. Go to **POS Sale → Discounts** (or **Sale → Discounts**).
+2. Create a discount with:
+   - **Name** — e.g., "Summer Sale 10%"
+   - **Discount Type** — Percentage or Fixed
+   - **Amount** — The discount value
+   - **Start Date** and **End Date** — When the discount is active
+   - **Priority** and **Applicable Products** — Fine-tune which products qualify
+3. Click **Save**. The discount applies automatically.
+
+📸 *[Screenshot: The Discounts list and Add Discount form]*
+
+---
+
+## Shipments
+
+Track deliveries for your sales:
+
+1. Go to **Sale → Shipments**.
+2. View all pending and completed shipments.
+3. Update the shipping status as orders are delivered.
+
+📸 *[Screenshot: The Shipments page with status tracking]*
+
+---
+
+## Settings & Options
+
+| Setting | What It Does | Where to Find It |
+|---|---|---|
+| **POS Interface** | Choose Simple, Product Suggestion, or Quick Button layout | **Settings → Business Settings → POS Sale** |
+| **Default Customer** | The customer used for walk-in sales | **Settings → Business Settings → POS Sale** |
+| **Require Customer** | Force staff to select a customer for every sale | **Settings → Business Settings → POS Sale** |
+| **Sale Prefix** | Prefix for sale invoice numbers (e.g., "INV") | **Settings → Business Settings → Prefixes** |
+| **Enable Sales Orders** | Show/hide the Sales Orders feature | **Settings → Business Settings → Sale** |
+| **Enable Quotations** | Show/hide the Quotations feature | **Settings → Business Settings → Sale** |
+| **Enable Shipping** | Show/hide shipping fields on sales | **Settings → Business Settings → Sale** |
+| **Sale Price Tax** | Whether selling prices include tax or not | **Settings → Business Settings → Sale** |
+
+---
+
+## Common Questions
+
+**Q: Can I edit a sale after it's been recorded?**
+A: Yes, if your administrator has allowed it. Go to the sale and click **Actions → Edit**. Changes are only allowed within the number of days set in **Transaction Edit Days** setting.
+
+**Q: How do I reprint a receipt?**
+A: Go to the sale in the list, click **Actions → Print Invoice**. You can also use `Ctrl + P` on the POS right after a sale.
+
+**Q: Can a customer pay with multiple methods?**
+A: Yes! On the payment screen, add multiple payment rows — for example, part cash and part card.
+
+**Q: What's the difference between POS and Direct Sale?**
+A: POS is designed for fast counter sales with a visual interface. Direct Sale is a form-based option for detailed invoicing and complex transactions. Both record sales the same way.
+
+---
+
+## Tips & Best Practices
+
+- 📌 Use the **POS screen** for quick retail sales and the **Direct Sale** for wholesale or invoice-based sales
+- 📌 Open and close your **Cash Register** at the start and end of every shift
+- 📌 Use **Quotations** to give customers price estimates before they commit
+- 📌 Set up **keyboard shortcuts** to speed up POS operations
+- 📌 Train your staff on the **POS screen** — it's designed to be quick and easy
+
+---
+
+## Mobile App Sales in Sales Lists
+
+### Module Overview
+The Sales list and POS Sales list can filter sales recorded through the Mobile App.
+
+### Purpose of the Feature
+This filter lets staff review app-created sales separately from other sales, including when the app is installed on multiple devices.
+
+### User Access / Permissions
+Users need permission to view the Sales list or POS Sales list they want to open.
+
+### Step-by-Step Usage Instructions
+1. Open **Sale → Sales** or **POS Sale → List Sells**.
+2. Open **Report Filters**.
+3. In **Sources**, select **Mobile App**.
+4. Review the filtered results. Select **All** to remove the source filter.
+
+### Field Descriptions
+
+| Field | Type | Description |
+|---|---|---|
+| **Sources** | Dropdown | Select **Mobile App** to show API-created sales from all Mobile App installations. |
+
+### Business Logic / Workflow
+The filter groups API-created sales under one Mobile App source; it does not separate sales by device installation.
+
+### Notes or Important Considerations
+This source is intended for sales created through the Mobile App. Other integrations that create API sales should not use the same API-created flag if they need to be excluded from this filter.
+
+## Select and reprint invoices
+
+On the Sales index, use the row checkboxes to select the invoices you want to print. Selection does not open the sale details modal. Click **Reprint Invoices** in the bottom action area to send the selected invoices to the printer one by one in a single operation. Each invoice uses the same saved layout and invoice page styling as individual invoice printing, including sales without a public invoice link. Bulk invoices adapt to the selected paper width (including A5) so right-side totals remain visible. Successful reprint requests are recorded per invoice in the **Activity Log** report.
+
+## Create delivery notes for selected invoices
+
+When **Enable Delivery Notes** is on and the user has the **Create Delivery Note** permission, select final sales in the Sales list and click **Create Delivery Note** in the bottom action area. The system creates **one consolidated delivery note for the entire selection**, including invoices for different customers. It lists every source invoice and customer, and combines matching products into summed quantities on the printed note while retaining each invoice's delivery lines for traceability. All selected invoices must be eligible and have undelivered quantities; due or partially paid invoices require the existing approval or permission. The operation is atomic, so an invalid selection creates no note. Sale transaction records are not edited; held stock is updated using each source invoice's location. Successful note creation is recorded against each source invoice in the **Activity Log** report.
+
+From **Sales → Delivery Notes**, open a note using its **View** action and select **Print** to open the HTML Crystal style preview. Use the preview toolbar to zoom or adjust text, then print the delivery note on A4. Each customer/delivery pair has a row number and appears on the same row; the right column shows delivery/address details without repeating the customer name or invoice number. Customer Info keeps the customer name and invoice number on one line and lists each invoice's assigned commission agents (using the configured labels) and value. Both columns use compact spacing, customer names match the invoice text size, the Customer Group label is regular weight, and empty-address placeholders are omitted.
+
+The label used for Customer Group in Delivery Note details is configurable in **Business Settings → Merchant**. It defaults to **Customer Group**. Product names and delivered quantities print in regular weight while table headers remain emphasized.
+
+## Filter sales by commission agents
+
+The Sales list Report Filters use the custom labels configured in **Business Settings → Sales** for **Sales Commission Agent** and **Sales Commission Agent 2**. When each agent field is enabled, its filter appears separately and matches only that corresponding agent assignment on the sale.
+
+The **Sales Representative Report** uses the same custom labels and enabled settings in its Report Filters. Its two agent filters remain independent, so selecting an agent in one filter does not substitute for the other.
